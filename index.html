@@ -125,10 +125,6 @@
   .hero-inner{
     max-width:1100px;
     margin:0 auto;
-    display:grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap:50px;
-    align-items:center;
   }
   .eyebrow{
     font-size:0.8rem;
@@ -191,14 +187,6 @@
     border-bottom:1px solid var(--ink);
     padding-bottom:2px;
   }
-
-  .hero-visual{
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .hero-visual svg{ width:100%; height:auto; max-width:340px; }
 
   /* single-stroke "engraving" line icons — signature motif */
   .etch-icon{
@@ -427,9 +415,6 @@
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 860px){
-    .hero-inner{ grid-template-columns:1fr; }
-    .hero-visual{ order:-1; }
-    .hero-visual svg{ max-width:220px; }
     .gallery-grid{ grid-template-columns:repeat(2, 1fr); }
     .moments-grid{ grid-template-columns:repeat(2, 1fr); }
     .process-flow{ grid-template-columns:1fr; gap:34px; }
@@ -476,37 +461,6 @@
         </a>
         <a class="btn-ghost" href="#gallery">Bekijk eerder werk</a>
       </div>
-    </div>
-    <div class="hero-visual">
-      <!-- signature single-stroke engraving illustration, in the style of BigJ's own laser work -->
-      <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="180" cy="180" r="150" fill="none" stroke="var(--line)" stroke-width="1"/>
-        <!-- gift box -->
-        <g class="etch-icon rust">
-          <rect x="110" y="170" width="140" height="110" rx="4"/>
-          <path d="M110 205 h140"/>
-          <path d="M180 170 v110"/>
-        </g>
-        <g class="etch-icon">
-          <path d="M180 170 c-14 -20 -46 -20 -46 2 c0 16 24 18 46 -2z"/>
-          <path d="M180 170 c14 -20 46 -20 46 2 c0 16 -24 18 -46 -2z"/>
-        </g>
-        <!-- little leaves / sprig, echoing the moestuin sign -->
-        <g class="etch-icon sage">
-          <path d="M60 260 c10 -30 6 -55 -8 -72"/>
-          <path d="M52 218 c8 4 16 2 20 -6"/>
-          <path d="M50 236 c9 2 16 -2 18 -10"/>
-        </g>
-        <g class="etch-icon wood">
-          <path d="M300 250 c-10 -28 -6 -52 8 -68"/>
-          <path d="M308 210 c-8 4 -16 2 -20 -6"/>
-          <path d="M310 228 c-9 2 -16 -2 -18 -10"/>
-        </g>
-        <!-- tiny heart tag, echoing his string-art heart -->
-        <g class="etch-icon rust">
-          <path d="M164 300 c-10 -10 -22 -6 -22 6 c0 10 14 18 22 24 c8 -6 22 -14 22 -24 c0 -12 -12 -16 -22 -6z"/>
-        </g>
-      </svg>
     </div>
   </div>
 
