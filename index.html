@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>creations by bigJ — op maat gemaakte cadeautjes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F4EDE0;
+    --paper-warm: #EDE3D0;
+    --ink: #2A241B;
+    --wood: #9C7A4E;
+    --wood-dark: #6B5233;
+    --rust: #A8532E;
+    --sage: #6F7856;
+    --rose: #C98F82;
+    --line: rgba(42,36,27,0.16);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rust); color:var(--paper); }
+
+  a{ color:inherit; }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .script{
+    font-family:'Caveat', cursive;
+    font-weight:600;
+  }
+
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* subtle paper texture */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1000;
+    opacity:0.035;
+    background-image:
+      radial-gradient(circle at 20% 30%, #000 0.5px, transparent 0.5px),
+      radial-gradient(circle at 70% 70%, #000 0.5px, transparent 0.5px);
+    background-size: 3px 3px, 5px 5px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(244,237,224,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 28px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:500;
+  }
+  .wordmark .by{
+    font-family:'Caveat', cursive;
+    font-size:1.1rem;
+    font-weight:600;
+    color:var(--rust);
+    margin:0 2px;
+  }
+  .nav a.cta{
+    font-size:0.85rem;
+    text-decoration:none;
+    border:1px solid var(--ink);
+    padding:9px 18px;
+    border-radius:100px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .nav a.cta:hover{ background:var(--ink); color:var(--paper); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 28px 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-inner{
+    max-width:1100px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:50px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--wood-dark);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;
+    height:1px;
+    background:var(--rust);
+    display:inline-block;
+  }
+  h1.hero-title{
+    font-size:clamp(2.2rem, 4.6vw, 3.6rem);
+    line-height:1.08;
+  }
+  h1.hero-title em{
+    font-style:italic;
+    color:var(--rust);
+    font-weight:400;
+  }
+  .hero-sub{
+    font-size:1.08rem;
+    line-height:1.65;
+    color:#463c2e;
+    margin-top:24px;
+    max-width:46ch;
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex;
+    gap:16px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:var(--rust);
+    color:var(--paper);
+    text-decoration:none;
+    padding:14px 26px;
+    border-radius:100px;
+    font-size:0.95rem;
+    font-weight:500;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .18s ease, box-shadow .18s ease;
+    box-shadow:0 2px 0 var(--wood-dark);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); }
+  .btn-ghost{
+    text-decoration:none;
+    font-size:0.95rem;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:2px;
+  }
+
+  .hero-visual{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-visual svg{ width:100%; height:auto; max-width:340px; }
+
+  /* single-stroke "engraving" line icons — signature motif */
+  .etch-icon{
+    fill:none;
+    stroke:var(--ink);
+    stroke-width:1.4;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .etch-icon.rust{ stroke:var(--rust); }
+  .etch-icon.sage{ stroke:var(--sage); }
+  .etch-icon.wood{ stroke:var(--wood-dark); }
+
+  .divider-row{
+    display:flex;
+    justify-content:center;
+    gap:46px;
+    padding:6px 0 10px;
+    opacity:0.75;
+  }
+  .divider-row svg{ width:34px; height:34px; }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding:70px 0; }
+  .section-head{
+    text-align:center;
+    max-width:620px;
+    margin:0 auto 48px;
+  }
+  .section-head .eyebrow{ justify-content:center; }
+  .section-head .eyebrow::before{ display:none; }
+  .section-head h2{
+    font-size:clamp(1.7rem, 3vw, 2.3rem);
+  }
+  .section-head p{
+    margin-top:16px;
+    color:#463c2e;
+    line-height:1.6;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-band{
+    background:var(--paper-warm);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  .gallery-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:6px;
+    box-shadow:0 10px 26px rgba(42,36,27,0.14);
+    transform:rotate(var(--r,0deg));
+    transition:transform .3s ease, box-shadow .3s ease;
+    background:#fff;
+    padding:8px;
+    border:1px solid rgba(42,36,27,0.08);
+  }
+  .gallery-item:nth-child(1){ --r:-1.2deg; }
+  .gallery-item:nth-child(2){ --r:0.8deg; }
+  .gallery-item:nth-child(3){ --r:-0.6deg; }
+  .gallery-item:nth-child(4){ --r:1deg; }
+  .gallery-item:nth-child(5){ --r:-0.9deg; }
+  .gallery-item:hover{
+    transform:rotate(0deg) scale(1.02);
+    box-shadow:0 16px 34px rgba(42,36,27,0.22);
+    z-index:5;
+  }
+  .gallery-item img{
+    width:100%;
+    display:block;
+    border-radius:3px;
+  }
+  .gallery-note{
+    text-align:center;
+    margin-top:34px;
+    font-size:0.95rem;
+    color:var(--wood-dark);
+  }
+  .gallery-note a{
+    color:var(--rust);
+    text-decoration:none;
+    border-bottom:1px solid var(--rust);
+  }
+
+  /* ---------- MOMENTS ---------- */
+  .moments-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:24px;
+  }
+  .moment-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:30px 22px;
+    text-align:center;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .moment-card:hover{ border-color:var(--rust); transform:translateY(-4px); }
+  .moment-card svg{ width:44px; height:44px; margin-bottom:16px; }
+  .moment-card h3{
+    font-size:1.08rem;
+    font-weight:500;
+    margin-bottom:8px;
+  }
+  .moment-card p{
+    font-size:0.9rem;
+    color:#5a4f3e;
+    line-height:1.55;
+    margin:0;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .process .section-head p{ color:#d8cdb8; }
+  .process .eyebrow{ color:var(--rose); }
+  .process .eyebrow::before{ background:var(--rose); }
+  .process-flow{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+    position:relative;
+  }
+  .process-step{
+    padding:0 20px;
+    position:relative;
+  }
+  .process-step:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    top:22px;
+    right:-8px;
+    width:16px;
+    height:1px;
+    background:var(--rose);
+  }
+  .step-mark{
+    font-family:'Caveat', cursive;
+    font-size:1.6rem;
+    color:var(--rose);
+    display:block;
+    margin-bottom:10px;
+  }
+  .process-step h3{
+    font-size:1.05rem;
+    font-weight:500;
+    color:var(--paper);
+    margin-bottom:10px;
+  }
+  .process-step p{
+    font-size:0.9rem;
+    color:#bcb09b;
+    line-height:1.55;
+    margin:0;
+  }
+
+  /* ---------- TECHNIEKEN ---------- */
+  .techniques{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+  }
+  .tech-pill{
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:10px 20px;
+    font-size:0.9rem;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    background:var(--paper-warm);
+  }
+  .tech-pill svg{ width:18px; height:18px; }
+
+  /* ---------- CTA / CONTACT ---------- */
+  .contact{
+    text-align:center;
+  }
+  .contact-card{
+    background:var(--paper-warm);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:64px 40px;
+    max-width:720px;
+    margin:0 auto;
+    position:relative;
+  }
+  .contact-card h2{
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    margin-bottom:18px;
+  }
+  .contact-card p{
+    color:#463c2e;
+    line-height:1.6;
+    max-width:48ch;
+    margin:0 auto 30px;
+  }
+  .contact-actions{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .handle{
+    margin-top:26px;
+    font-family:'Caveat', cursive;
+    font-size:1.3rem;
+    color:var(--rust);
+  }
+
+  footer{
+    padding:32px 28px 50px;
+    text-align:center;
+    font-size:0.82rem;
+    color:var(--wood-dark);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-visual{ order:-1; }
+    .hero-visual svg{ max-width:220px; }
+    .gallery-grid{ grid-template-columns:repeat(2, 1fr); }
+    .moments-grid{ grid-template-columns:repeat(2, 1fr); }
+    .process-flow{ grid-template-columns:1fr; gap:34px; }
+    .process-step:not(:last-child)::after{ display:none; }
+  }
+  @media (max-width: 520px){
+    .gallery-grid{ grid-template-columns:1fr; }
+    .moments-grid{ grid-template-columns:1fr; }
+    .contact-card{ padding:44px 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--rust);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="wordmark">creations<span class="by">by</span>bigJ</div>
+    <a class="cta" href="#contact">Laat je horen</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Handgemaakt in Menen</div>
+      <h1 class="hero-title">Geboorte, trouw, of<br>gewoon <em>iets leuks</em> —<br>we bedenken het samen.</h1>
+      <p class="hero-sub">Creations by bigJ maakt cadeautjes op maat: gelaserd, geborduurd, geprint of gefreesd. Geen catalogus om uit te kiezen — vertel me wat je in gedachten hebt, en we denken er samen over na tot het klopt.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">
+          Vertel me je idee
+          <svg width="16" height="16" viewBox="0 0 16 16" class="etch-icon" style="stroke:currentColor"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+        </a>
+        <a class="btn-ghost" href="#gallery">Bekijk eerder werk</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- signature single-stroke engraving illustration, in the style of BigJ's own laser work -->
+      <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="180" cy="180" r="150" fill="none" stroke="var(--line)" stroke-width="1"/>
+        <!-- gift box -->
+        <g class="etch-icon rust">
+          <rect x="110" y="170" width="140" height="110" rx="4"/>
+          <path d="M110 205 h140"/>
+          <path d="M180 170 v110"/>
+        </g>
+        <g class="etch-icon">
+          <path d="M180 170 c-14 -20 -46 -20 -46 2 c0 16 24 18 46 -2z"/>
+          <path d="M180 170 c14 -20 46 -20 46 2 c0 16 -24 18 -46 -2z"/>
+        </g>
+        <!-- little leaves / sprig, echoing the moestuin sign -->
+        <g class="etch-icon sage">
+          <path d="M60 260 c10 -30 6 -55 -8 -72"/>
+          <path d="M52 218 c8 4 16 2 20 -6"/>
+          <path d="M50 236 c9 2 16 -2 18 -10"/>
+        </g>
+        <g class="etch-icon wood">
+          <path d="M300 250 c-10 -28 -6 -52 8 -68"/>
+          <path d="M308 210 c-8 4 -16 2 -20 -6"/>
+          <path d="M310 228 c-9 2 -16 -2 -18 -10"/>
+        </g>
+        <!-- tiny heart tag, echoing his string-art heart -->
+        <g class="etch-icon rust">
+          <path d="M164 300 c-10 -10 -22 -6 -22 6 c0 10 14 18 22 24 c8 -6 22 -14 22 -24 c0 -12 -12 -16 -22 -6z"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="divider-row" aria-hidden="true">
+    <svg viewBox="0 0 40 40"><path class="etch-icon" d="M20 6 C10 6 6 14 6 20 c0 10 8 14 14 14 c6 0 14 -4 14 -14 c0 -6 -4 -14 -14 -14z M13 20h14 M20 13v14"/></svg>
+    <svg viewBox="0 0 40 40"><path class="etch-icon rust" d="M20 8 v10 M14 12 l6 6 6 -6 M8 30 h24"/></svg>
+    <svg viewBox="0 0 40 40"><circle class="etch-icon sage" cx="20" cy="20" r="12"/><path class="etch-icon sage" d="M20 8v6M20 26v6M8 20h6M26 20h6"/></svg>
+  </div>
+</section>
+
+<section class="gallery-band" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Uit de werkplaats</div>
+      <h2>Wat er hier al gemaakt is</h2>
+      <p>Elk stuk begon met iemand die iets wou vieren, vieren, of gewoon iemand blij maken — een naamplaatje, een gravure, een figuurtje op maat.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="images/grid2.png" alt="Gelaserde gravures: houten pot met wolf, Hello Kitty knipwerk, herfstschaal met houtjes"></div>
+      <div class="gallery-item"><img src="images/grid1.png" alt="Geboorteplankje voor Luna, moestuinbord, geborduurde babytrui"></div>
+      <div class="gallery-item"><img src="images/grid4.png" alt="Beschilderd Warhammer-figuur, houten naamschijfjes, puzzelstuk-sleutelhangers"></div>
+      <div class="gallery-item"><img src="images/grid3.png" alt="3D-geprint figuurtje, geboortebordje CAS, geborduurde patch"></div>
+      <div class="gallery-item"><img src="images/grid5.png" alt="Gelaserde donuts, geurschaal met namen, bedrukte kinderkleding"></div>
+    </div>
+    <p class="gallery-note">Meer werk en werk-in-uitvoering op <a href="https://instagram.com/creations_by_bigj" target="_blank" rel="noopener">@creations_by_bigj</a></p>
+  </div>
+</section>
+
+<section class="moments">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Voor elk moment</div>
+      <h2>Waarvoor mensen langskomen</h2>
+    </div>
+    <div class="moments-grid">
+      <div class="moment-card">
+        <svg viewBox="0 0 40 40"><path class="etch-icon rust" d="M20 34 c-14 -9 -16 -18 -16 -24 c0 -6 5 -9 9 -6 c3 2 5 6 7 10 c2 -4 4 -8 7 -10 c4 -3 9 0 9 6 c0 6 -2 15 -16 24z"/></svg>
+        <h3>Geboorte</h3>
+        <p>Naamplankjes, geboortebordjes, een eerste knuffel met naam erop geborduurd.</p>
+      </div>
+      <div class="moment-card">
+        <svg viewBox="0 0 40 40"><circle class="etch-icon rust" cx="14" cy="26" r="7"/><circle class="etch-icon rust" cx="26" cy="26" r="7"/><path class="etch-icon" d="M20 8 l3 6 -3 -2 -3 2z"/></svg>
+        <h3>Trouw &amp; peter/meter</h3>
+        <p>Naamschijfjes voor op tafel, een doosje met de grote vraag, iets om altijd bij te houden.</p>
+      </div>
+      <div class="moment-card">
+        <svg viewBox="0 0 40 40"><path class="etch-icon rust" d="M20 8v24M8 20h24" transform="rotate(45 20 20)"/><circle class="etch-icon rust" cx="20" cy="20" r="15"/></svg>
+        <h3>Fandom &amp; hobby</h3>
+        <p>Pokémon, Warhammer, of jouw eigen obsessie — als het jou blij maakt, kan het gemaakt worden.</p>
+      </div>
+      <div class="moment-card">
+        <svg viewBox="0 0 40 40"><path class="etch-icon rust" d="M12 30c0-10 4-18 8-22 4 4 8 12 8 22"/><path class="etch-icon rust" d="M12 30h16"/></svg>
+        <h3>Gewoon omdat</h3>
+        <p>Geen aanleiding nodig — soms wil je iemand gewoon iets geven dat uniek voor hen is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Hoe het gaat</div>
+      <h2>Samen van idee naar cadeau</h2>
+      <p>Geen webshop met vaste opties — een gesprek dat uitmondt in iets dat er nog niet was.</p>
+    </div>
+    <div class="process-flow">
+      <div class="process-step">
+        <span class="step-mark">1.</span>
+        <h3>Jij deelt je idee</h3>
+        <p>Een gelegenheid, een naam, een gevoel — hoe vaag ook, het is genoeg om mee te starten.</p>
+      </div>
+      <div class="process-step">
+        <span class="step-mark">2.</span>
+        <h3>We denken erover na</h3>
+        <p>Samen kijken we wat past: materiaal, techniek, formaat — tot het idee klopt voor jou.</p>
+      </div>
+      <div class="process-step">
+        <span class="step-mark">3.</span>
+        <h3>Het wordt gemaakt</h3>
+        <p>In de werkplaats, met de laser, printer, borduurmachine of frees — met aandacht voor detail.</p>
+      </div>
+      <div class="process-step">
+        <span class="step-mark">4.</span>
+        <h3>Jij ontvangt het</h3>
+        <p>Een stuk dat nergens anders bestaat, gemaakt voor precies dat ene moment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="techniques-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">In de werkplaats</div>
+      <h2>Technieken die gebruikt worden</h2>
+    </div>
+    <div class="techniques">
+      <div class="tech-pill"><svg viewBox="0 0 20 20" class="etch-icon rust"><path d="M3 10h9M12 6l4 4-4 4"/></svg>Lasergravure &amp; snijwerk</div>
+      <div class="tech-pill"><svg viewBox="0 0 20 20" class="etch-icon rust"><circle cx="10" cy="10" r="6"/><path d="M10 6v4l3 2"/></svg>3D-printen</div>
+      <div class="tech-pill"><svg viewBox="0 0 20 20" class="etch-icon rust"><path d="M4 10c2-4 10-4 12 0M4 10c2 4 10 4 12 0"/></svg>Borduurwerk</div>
+      <div class="tech-pill"><svg viewBox="0 0 20 20" class="etch-icon rust"><rect x="4" y="4" width="12" height="12" rx="2"/></svg>CNC-freeswerk</div>
+      <div class="tech-pill"><svg viewBox="0 0 20 20" class="etch-icon rust"><path d="M10 3v14M6 7l4-4 4 4"/></svg>Vinylsnijwerk</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <h2>Heb je iets in gedachten?</h2>
+      <p>Stuur een berichtje — een foto, een naam, een half idee. Dat is genoeg om mee te beginnen.</p>
+      <div class="contact-actions">
+        <a class="btn-primary" href="https://instagram.com/creations_by_bigj" target="_blank" rel="noopener">
+          Stuur een DM
+          <svg width="16" height="16" viewBox="0 0 16 16" class="etch-icon" style="stroke:currentColor"><path d="M2 8h11M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+      <div class="handle">@creations_by_bigj</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  creations by bigJ — Menen, België
+</footer>
+
+</body>
+</html>
